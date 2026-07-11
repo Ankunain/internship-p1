@@ -56,9 +56,7 @@
                                 No students found.
                             </td>
                         </tr>
-               
-                        
-                    @endforeach
+                    @endforelse
 
                 </tbody>
 
