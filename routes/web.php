@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/home/{name?}', function ($name = null) {
@@ -18,9 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', function () {
-    return 'this is a route';
-});
 
 
 // Route::get('/home/', [FrontController::class, 'home']);
@@ -30,14 +28,23 @@ Route::get('/', function () {
 
 
 
-
 // Grouping by controller
 Route::controller(FrontController::class)->group(function () {
 
-    Route::get('home', 'home')->name('home');
+    Route::get('/', 'home')->name('home');
     Route::get('about', 'about')->name('about');
     Route::get('contact', 'contact')->name('contact');
-
     
 });
 
+
+
+// Grouping by controller
+Route::controller(StudentController::class)->group(function () {
+    Route::get('/students/index', 'index')->name('student.index');
+
+    Route::get('/students/create', 'create')->name('student.create');
+    Route::post('/students/create/store', 'store')->name('student.store');
+    
+
+});

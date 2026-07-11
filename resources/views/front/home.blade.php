@@ -9,4 +9,8 @@
         consectetur quidem hic vero porro quasi? Natus, doloribus quibusdam corrupti cupiditate pariatur sequi dicta?
         Eos temporibus aliquam, rem blanditiis eius facere deleniti. Aliquam in numquam, quidem asperiores dolorem vitae
         quasi quae quibusdam non, quam similique excepturi harum nisi consequatur mollitia velit qui perferendis?</p>
+
+
+    <a class="btn btn-dark btn-sm mt-5" href="{{ route('student.index') }}">Students List</a>
+    <a class="btn btn-dark btn-sm mt-5" href="{{ route('student.create') }}">Create Student</a>
 @endsection
