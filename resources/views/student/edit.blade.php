@@ -54,45 +54,47 @@
                                     <label class="form-label">
                                         Student Name <span class="required">*</span>
                                     </label>
-                                    <input type="text" class="form-control" name="name"
-                                        placeholder="Enter student name">
+                                    <input value="{{ $student->name }}" type="text" class="form-control"
+                                        name="name" placeholder="Enter student name">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
                                         Roll No
                                     </label>
-                                    <input type="text" class="form-control" name="roll_no"
-                                        placeholder="Enter roll number">
+                                    <input value="{{ $student->roll_no }}" type="text" class="form-control"
+                                        name="roll_no" placeholder="Enter roll number">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
                                         Phone
                                     </label>
-                                    <input type="text" class="form-control" name="phone"
-                                        placeholder="Enter phone number">
+                                    <input value="{{ $student->phone }}" type="text" class="form-control"
+                                        name="phone" placeholder="Enter phone number">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
                                         Email
                                     </label>
-                                    <input type="email" class="form-control" name="email" placeholder="Enter email">
+                                    <input value="{{ $student->email }}" type="email" class="form-control"
+                                        name="email" placeholder="Enter email">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
                                         Class
                                     </label>
-                                    <input type="text" class="form-control" name="class" placeholder="Enter class">
+                                    <input value="{{ $student->class }}" type="text" class="form-control"
+                                        name="class" placeholder="Enter class">
                                 </div>
 
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">
                                         Address
                                     </label>
-                                    <textarea class="form-control" rows="4" name="address" placeholder="Enter address"></textarea>
+                                    <textarea class="form-control" rows="4" name="address" placeholder="Enter address">{{ $student->class }}</textarea>
                                 </div>
 
                             </div>
@@ -137,7 +139,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{ route('student.store') }}",
+                url: "{{ route('student.edit.store', $student->id) }}",
                 data: data,
                 beforeSend: function() {
                     btn.prop('disabled', true);
@@ -149,8 +151,14 @@
 
                 },
                 success: function(response) {
-                    alert(response.message)
-                    window.location.href = "{{ route('student.index') }}";
+
+                    if (response.status == 'validation') {
+                        alert(response.error['name']);
+                    } else {
+                        alert(response.message)
+
+                        window.location.href = "{{ route('student.index') }}";
+                    }
 
                 },
                 error: function(response) {

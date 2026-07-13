@@ -42,9 +42,14 @@ Route::controller(FrontController::class)->group(function () {
 // Grouping by controller
 Route::controller(StudentController::class)->group(function () {
     Route::get('/students/index', 'index')->name('student.index');
-
     Route::get('/students/create', 'create')->name('student.create');
     Route::post('/students/create/store', 'store')->name('student.store');
+    Route::post('/students/data/delete', 'delete')->name('student.delete');
+
+
+    Route::get('/students/edit/{id}', 'edit')->name('student.edit');
+    Route::post('/students/edit/{id}/store', 'editStore')->name('student.edit.store');
+
     
 
 });

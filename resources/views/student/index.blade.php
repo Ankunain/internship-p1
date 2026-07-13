@@ -34,6 +34,7 @@
                         <th>Email</th>
                         <th>Class</th>
                         <th>Address</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -48,6 +49,14 @@
                             <td>{{ $student->email }}</td>
                             <td>{{ $student->class }}</td>
                             <td>{{ $student->address }}</td>
+                            <td>
+                                <button onclick="deleteData('{{ $student->id }}')"
+                                    class="btn btn-danger btn-sm">Delete</button>
+
+                                <a href="{{ route('student.edit', $student->id) }}" class="btn btn-primary btn-sm">
+                                    Edit
+                                </a>
+                            </td>
                         </tr>
                     @empty
 
@@ -69,6 +78,26 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        function deleteData(id) {
+
+
+           if(confirm('Are you sure you want to delete this item.')){
+             $.ajax({
+                type: "POST",
+                url: "{{ route('student.delete') }}",
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    alert('Data Deleted Successfully.');
+                    window.location.reload();
+                }
+            });
+           }
+
+        }
+    </script>
 </body>
 
 </html>
