@@ -51,6 +51,14 @@ Route::middleware('guest')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::match(['get', 'post'], 'login', 'login')->name('login');
         Route::match(['get', 'post'], 'register', 'register')->name('register');
+
+        Route::match(['get', 'post'], 'forgot', 'forgot')->name('forgot');
+        // Route::match(['get', 'post'], 'reset/{remember_token}', 'reset')->name('reset');
+        Route::match(['get', 'post'], 'reset/', 'reset')->name('reset');
+        
+        Route::match(['get', 'post'], 'otp', 'otp')->name('otp');
+
+
     });
 });
 

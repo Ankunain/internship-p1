@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ForgotPasswordMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -37,7 +40,7 @@ class AuthController extends Controller
 
             $validated = $request->validate([
                 'email' => 'required',
-                'password' => 'required|min:6'
+                'password' => 'required'
             ]);
 
 
@@ -93,6 +96,80 @@ class AuthController extends Controller
             return redirect()->back()->with('message', 'User Created Successfully');
         } else {
             return view('auth.register');
+        }
+    }
+
+
+    public function forgot(Request $request)
+    {
+
+        if ($request->isMethod('post')) {
+
+
+            $request->validate([
+                'email' => 'required',
+            ]);
+
+            $user =  User::where('email', $request->email)->first();
+
+            if ($user) {
+
+
+                // $rember_token =  Str::random(4);
+
+                $rember_token =  rand(1000, 9999);
+
+                // $user->remember_token = $rember_token;
+
+                // $user->save();
+
+                $user->update([
+                    'remember_token' =>  $rember_token
+                ]);
+
+                Mail::to($user->email)->send(new ForgotPasswordMail($user));
+            } else {
+
+                return redirect()->back()->with('error', 'This email not exists. please check your email again.');
+            }
+        } else {
+            return view('auth.forgot');
+        }
+    }
+
+    public function reset(Request $request, $remember_token = null)
+    {
+
+        // $user = User::where('remember_token', $remember_token)->first();
+
+        // if (!$user) {
+        //     abort(404);
+        // }
+
+
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'password' => 'required',
+                'c_password' => 'required',
+                'otp' => 'required'
+            ]);
+
+            $user = User::where('remember_token', $request->otp)->first();
+
+            if (!$user) {
+                return redirect()->back()->with('error', 'Entered OTP is wrong.');
+            }
+
+            $user->update([
+                'password' =>  Hash::make($request->password),
+                'remember_token' => NULL,
+            ]);
+
+            return redirect()->route('login')->with('success', 'Password Changed Successfully.');
+        } else {
+
+            return view('auth.reset', compact('remember_token'));
         }
     }
 }

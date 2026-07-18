@@ -100,6 +100,9 @@
                             </div>
 
                             <div class="text-end">
+                                <a href="{{ route('user.dashboard') }}" type="reset" class="btn btn-dark">
+                                    Back to home
+                                </a>
                                 <button type="reset" class="btn btn-secondary">
                                     Reset
                                 </button>
