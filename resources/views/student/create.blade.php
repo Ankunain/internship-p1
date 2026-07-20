@@ -1,37 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f8f9fa;
-        }
-
-        .card {
-            border: none;
-            border-radius: 12px;
-        }
-
-        .card-header {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .required {
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-
+@extends('user.layout')
+@section('content')
     <div class="container py-5">
 
         <div class="row justify-content-center">
@@ -123,12 +91,6 @@
 
     </div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         $('#studentForm').submit(function(e) {
             e.preventDefault();
@@ -168,7 +130,4 @@
 
         });
     </script>
-
-</body>
-
-</html>
+@endsection

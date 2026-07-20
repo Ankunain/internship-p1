@@ -90,6 +90,57 @@
 
             </div>
 
+            <div class="table-responsive mt-4">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Class</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse($students as $student)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->roll_no }}</td>
+                                <td>{{ $student->phone }}</td>
+                                <td>{{ $student->email }}</td>
+                                <td>{{ $student->class }}</td>
+                                <td>{{ $student->address }}</td>
+                                <td>
+                                    <button onclick="deleteData('{{ $student->id }}')"
+                                        class="btn btn-danger btn-sm">Delete</button>
+
+                                    <a href="{{ route('student.edit', $student->id) }}" class="btn btn-primary btn-sm">
+                                        Edit
+                                    </a>
+                                </td>
+                            </tr>
+                        @empty
+
+                            <tr>
+                                <td colspan="8" class="text-center">
+                                    No students found.
+                                </td>
+                            </tr>
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
         </div>
 
     </section>

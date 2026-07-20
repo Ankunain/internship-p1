@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('user.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-
+@section('content')
     <div class="container py-5">
 
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -75,29 +65,25 @@
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function deleteData(id) {
 
 
-           if(confirm('Are you sure you want to delete this item.')){
-             $.ajax({
-                type: "POST",
-                url: "{{ route('student.delete') }}",
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    alert('Data Deleted Successfully.');
-                    window.location.reload();
-                }
-            });
-           }
+            if (confirm('Are you sure you want to delete this item.')) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('student.delete') }}",
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        alert('Data Deleted Successfully.');
+                        window.location.reload();
+                    }
+                });
+            }
 
         }
     </script>
-</body>
-
-</html>
+@endsection

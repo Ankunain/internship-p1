@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('user.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f8f9fa;
-        }
-
-        .card {
-            border: none;
-            border-radius: 12px;
-        }
-
-        .card-header {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .required {
-            color: red;
-        }
-    </style>
-</head>
-
-<body>
-
+@section('content')
     <div class="container py-5">
 
         <div class="row justify-content-center">
@@ -54,8 +23,8 @@
                                     <label class="form-label">
                                         Student Name <span class="required">*</span>
                                     </label>
-                                    <input value="{{ $student->name }}" type="text" class="form-control"
-                                        name="name" placeholder="Enter student name">
+                                    <input value="{{ $student->name }}" type="text" class="form-control" name="name"
+                                        placeholder="Enter student name">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
@@ -70,24 +39,24 @@
                                     <label class="form-label">
                                         Phone
                                     </label>
-                                    <input value="{{ $student->phone }}" type="text" class="form-control"
-                                        name="phone" placeholder="Enter phone number">
+                                    <input value="{{ $student->phone }}" type="text" class="form-control" name="phone"
+                                        placeholder="Enter phone number">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
                                         Email
                                     </label>
-                                    <input value="{{ $student->email }}" type="email" class="form-control"
-                                        name="email" placeholder="Enter email">
+                                    <input value="{{ $student->email }}" type="email" class="form-control" name="email"
+                                        placeholder="Enter email">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
                                         Class
                                     </label>
-                                    <input value="{{ $student->class }}" type="text" class="form-control"
-                                        name="class" placeholder="Enter class">
+                                    <input value="{{ $student->class }}" type="text" class="form-control" name="class"
+                                        placeholder="Enter class">
                                 </div>
 
                                 <div class="col-md-12 mb-3">
@@ -124,12 +93,6 @@
         </div>
 
     </div>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         $('#studentForm').submit(function(e) {
@@ -176,7 +139,4 @@
 
         });
     </script>
-
-</body>
-
-</html>
+@endsection
